@@ -6,7 +6,6 @@ import {
   View,
 } from "react-native";
 
-import { Input } from "@/components/Input";
 import { router, useFocusEffect } from "expo-router";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -48,6 +47,12 @@ export default function Index() {
     router.push("./form");
   }
 
+  function handleDelete(id: number) {
+    const novaLista = produtos.filter((produto) => produto.id !== id);
+    setProdutos(novaLista);
+    AsyncStorage.setItem("@produtos", JSON.stringify(novaLista));
+  }
+
   return (
     <View style={styles.container}>
       <View
@@ -75,7 +80,7 @@ export default function Index() {
         </TouchableOpacity>
       </View>
 
-      <Input placeholder="Pesquisar um produto" />
+      {/* <Input placeholder="Pesquisar um produto" /> */}
 
       <FlatList
         data={produtos}
@@ -86,7 +91,7 @@ export default function Index() {
               style={{ flexDirection: "row", justifyContent: "space-between" }}
             >
               <Text style={{ fontSize: 16 }}>{item.nome}</Text>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => handleDelete(item.id)}>
                 <Text style={{ color: "red" }}>Excluir</Text>
               </TouchableOpacity>
             </View>
@@ -112,7 +117,7 @@ const styles = StyleSheet.create({
 
   item: {
     padding: 10,
-    height: 80,
+    height: 50,
     width: "100%",
     backgroundColor: "#eee",
     marginTop: 10,

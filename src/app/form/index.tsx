@@ -1,4 +1,11 @@
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 import { useState } from "react";
 
@@ -54,14 +61,18 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Cadastro de Produto</Text>
+      <Image
+        source={require("../../../assets/images/add.jpg")}
+        style={{ width: 200, height: 200, borderRadius: 100, marginBottom: 20 }}
+      />
+      <Text style={styles.title}>Inserir um produto na lista</Text>
 
       <Input
         placeholder="Digite o nome do produto"
         onChangeText={(value) => setNome(value)}
       />
-      <TouchableOpacity style={styles.botaoEntrar} onPress={salvarDados}>
-        <Text style={styles.titleBotao}>Cadastrar</Text>
+      <TouchableOpacity style={styles.botaoCadastrar} onPress={salvarDados}>
+        <Text style={styles.titleBotao}>Inserir</Text>
       </TouchableOpacity>
     </View>
   );
@@ -86,8 +97,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 
-  botaoEntrar: {
-    width: 150,
+  botaoCadastrar: {
+    width: "100%",
     height: 50,
     backgroundColor: "orange",
     justifyContent: "center",

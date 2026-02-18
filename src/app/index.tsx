@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 export default function Index() {
   function handleLista() {
     router.push("./lista");
@@ -7,7 +7,11 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Bem Vindo ao Caju</Text>
+      <Image
+        source={require("../../assets/images/lista.jpg")}
+        style={{ width: 200, height: 200, borderRadius: 100, marginBottom: 20 }}
+      />
+      <Text style={styles.title}>Bem vindo ao caju lista de compras</Text>
       <TouchableOpacity style={styles.botaoEntrar} onPress={handleLista}>
         <Text style={styles.titleBotao}>Entrar</Text>
       </TouchableOpacity>
@@ -20,10 +24,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    padding: 20,
   },
 
   botaoEntrar: {
-    width: 150,
+    width: "100%",
     height: 50,
     backgroundColor: "orange",
     justifyContent: "center",
